@@ -1,0 +1,28 @@
+Drone Takeoff and Fly
+ 
+import airsim
+
+import time
+
+client = airsim.MultirotorClient()
+
+client.confirmConnection()
+
+client.enableApiControl(True)
+
+client.armDisarm(True)
+
+client.takeoffAsync().join()
+
+print("Drone took off!")
+
+client.moveByVelocityAsync(3, 0, 0, 5).join()
+
+client.landAsync().join()
+
+client.armDisarm(False)
+
+client.enableApiControl(False)
+
+print("Mission Complete")
+ 
