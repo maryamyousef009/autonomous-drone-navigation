@@ -1,0 +1,16 @@
+import airsim
+import time
+# Connect to the simulator
+client = airsim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+client.armDisarm(True)
+# Take off
+client.takeoffAsync().join()
+# Fly forward
+client.moveByVelocityAsync(2, 0, 0, 5).join()
+# Land
+client.landAsync().join()
+client.armDisarm(False)
+client.enableApiControl(False)
+print("Mission Complete")
