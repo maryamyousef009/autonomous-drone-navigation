@@ -1,0 +1,11 @@
+# Connect to AirSim drone
+import airsim
+import time
+# Connect to AirSim
+client = airsim.MultirotorClient()
+client.confirmConnection()
+client.enableApiControl(True)
+client.armDisarm(True)
+# Take off
+client.takeoffAsync().join()
+print("Drone has taken off!")
